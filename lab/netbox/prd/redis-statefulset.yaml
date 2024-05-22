@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+spec:
+  serviceName: "redis"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:latest
+        env:
+         - name: HTTP_PROXY
+           value: "http://jp-proxy.xh3.lilly.com:9000"
+         - name: HTTPS_PROXY
+           value: "http://jp-proxy.xh3.lilly.com:9000"
+         - name: NO_PROXY
+           value: ".lilly.com,.svc.cluster.local,localhost,127.0.0.1"  # Adjust this based on your needs
+        ports:
+        - containerPort: 6379
+      #   volumeMounts:
+      #   - name: redis-storage
+      #     mountPath: /data
+      # volumes:
+      # - name: redis-storage
+      #   persistentVolumeClaim:
+      #     claimName: redis
+        volumeMounts:
+        - name: redis-config
+          mountPath: /usr/local/etc/redis
+          readOnly: true
+        - name: redis-storage
+          mountPath: /var/lib/redis/data
+      volumes:
+      - name: redis-config
+        configMap:
+          name: redis-config
+      - name: redis-storage
+        persistentVolumeClaim:
+          claimName: redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  ports:
+  - port: 6379
+    name: redis
+  selector:
+    app: redis
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+data:
+  redis.conf: |
+    dir /var/lib/redis/data/data
+

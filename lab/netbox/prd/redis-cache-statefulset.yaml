@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis-cache
+spec:
+  replicas: 1
+  serviceName: "redis-cache-service"
+  selector:
+    matchLabels:
+      app: redis-cache
+  template:
+    metadata:
+      labels:
+        app: redis-cache
+    spec:
+      containers:
+      - name: redis-cache
+        image: redis:latest
+        command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+        env:
+         - name: HTTP_PROXY
+           value: "http://jp-proxy.xh3.lilly.com:9000"
+         - name: HTTPS_PROXY
+           value: "http://jp-proxy.xh3.lilly.com:9000"
+         - name: NO_PROXY
+           value: ".lilly.com,.svc.cluster.local,localhost,127.0.0.1"  # Adjust this based on your needs
+        ports:
+        - containerPort: 6379
+          name: redis-port
+        volumeMounts:
+        - name: redis-config
+          mountPath: "/usr/local/etc/redis"
+          readOnly: true
+      volumes:
+      - name: redis-config
+        configMap:
+          name: redis-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-cache-service
+spec:
+  ports:
+  - port: 6379
+    targetPort: redis-port
+  selector:
+    app: redis-cache
+
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+data:
+  redis.conf: |
+    save ""
+    appendonly no
+

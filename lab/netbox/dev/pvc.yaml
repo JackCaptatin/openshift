@@ -1,0 +1,90 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"v1","kind":"PersistentVolumeClaim","metadata":{"annotations":{},"labels":{"app":"netbox"},"name":"postgresql","namespace":"netbox-prd"},"spec":{"accessModes":["ReadWriteOnce"],"resources":{"requests":{"storage":"10Gi"}}}}
+    openshift.io/backup-registry-hostname: 'docker-registry.default.svc:5000'
+    openshift.io/backup-server-version: '1.11'
+    openshift.io/migration-registry: ''
+    openshift.io/restore-registry-hostname: 'image-registry.openshift-image-registry.svc:5000'
+    openshift.io/restore-server-version: '1.20'
+    pv.kubernetes.io/bind-completed: 'yes'
+  resourceVersion: '341936192'
+  name: postgresql
+  uid: c55035a7-6301-44a3-a55f-458ea7ea6356
+  creationTimestamp: '2022-03-29T22:40:02Z'
+  managedFields:
+    - manager: velero-server
+      operation: Update
+      apiVersion: v1
+      time: '2022-03-29T22:40:02Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:openshift.io/backup-registry-hostname': {}
+            'f:openshift.io/backup-server-version': {}
+            'f:openshift.io/migration-registry': {}
+            'f:openshift.io/restore-registry-hostname': {}
+            'f:openshift.io/restore-server-version': {}
+          'f:labels':
+            .: {}
+            'f:migration.openshift.io/migrated-by-migmigration': {}
+            'f:migration.openshift.io/migrated-by-migplan': {}
+            'f:template': {}
+            'f:velero.io/backup-name': {}
+            'f:velero.io/restore-name': {}
+        'f:spec':
+          'f:accessModes': {}
+          'f:resources':
+            'f:requests':
+              .: {}
+              'f:storage': {}
+          'f:volumeMode': {}
+          'f:volumeName': {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2022-03-29T22:40:04Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:pv.kubernetes.io/bind-completed': {}
+        'f:status':
+          'f:accessModes': {}
+          'f:capacity':
+            .: {}
+            'f:storage': {}
+          'f:phase': {}
+    - manager: kubectl-client-side-apply
+      operation: Update
+      apiVersion: v1
+      time: '2023-08-15T09:54:55Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            'f:app': {}
+  namespace: netbox-prd
+  finalizers:
+    - kubernetes.io/pvc-protection
+  labels:
+    app: netbox
+    migration.openshift.io/migrated-by-migmigration: 2af5ea3b-af21-4f6d-a4e7-e67ee89bd7b7
+    migration.openshift.io/migrated-by-migplan: 50df54cd-8791-42f9-b3aa-6b35c7c05d3f
+    template: django-psql-persistent
+    velero.io/backup-name: stage-160da-stage-s5gbv
+    velero.io/restore-name: stage-160da-stage-s6qtf
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  volumeName: app044-unity-prd
+  volumeMode: Filesystem

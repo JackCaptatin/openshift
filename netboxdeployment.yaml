@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netbox-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netbox
+  template:
+    metadata:
+      labels:
+        app: netbox
+    spec:
+      containers:
+        - name: netbox
+          image: netboxcommunity/netbox:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: HTTP_PROXY
+              value: "http://proxy.gtm.lilly.com:9000"
+            - name: HTTPS_PROXY
+              value: "http://proxy.gtm.lilly.com:9000"
+

@@ -1,0 +1,20 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: nodejs-20yum-rh9
+  namespace: sales-force-training-gamification-qa
+spec:
+  runPolicy: Serial
+  source:
+    dockerfile: |
+      FROM registry.access.redhat.com/ubi8/nodejs-20:latest
+      USER root
+      RUN yum update -y && yum clean all
+      USER 1001
+  strategy:
+    dockerStrategy: {}
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'nodejs-20yum-rh9:latest'

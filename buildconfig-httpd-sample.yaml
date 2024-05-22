@@ -1,0 +1,68 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: ""
+    app.openshift.io/vcs-uri: https://github.com/sclorg/httpd-ex.git
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"build.openshift.io/v1","kind":"BuildConfig","metadata":{"annotations":{"app.openshift.io/vcs-ref":"","app.openshift.io/vcs-uri":"https://github.com/sclorg/httpd-ex.git","openshift.io/generated-by":"OpenShiftWebConsole"},"creationTimestamp":"2023-07-30T06:04:23Z","generation":2,"labels":{"app":"httpd-sample","app.kubernetes.io/component":"httpd-sample","app.kubernetes.io/instance":"httpd-sample","app.kubernetes.io/name":"httpd-sample","app.kubernetes.io/part-of":"sample-app","app.openshift.io/runtime":"httpd","app.openshift.io/runtime-version":"2.4-ubi9"},"managedFields":[{"apiVersion":"build.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:status":{"f:imageChangeTriggers":{},"f:lastVersion":{}}},"manager":"Go-http-client","operation":"Update","time":"2023-07-30T06:04:23Z"},{"apiVersion":"build.openshift.io/v1","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{".":{},"f:app.openshift.io/vcs-ref":{},"f:app.openshift.io/vcs-uri":{},"f:openshift.io/generated-by":{}},"f:labels":{".":{},"f:app":{},"f:app.kubernetes.io/component":{},"f:app.kubernetes.io/instance":{},"f:app.kubernetes.io/name":{},"f:app.kubernetes.io/part-of":{},"f:app.openshift.io/runtime":{},"f:app.openshift.io/runtime-version":{}}},"f:spec":{"f:output":{"f:to":{}},"f:runPolicy":{},"f:source":{"f:git":{".":{},"f:uri":{}},"f:type":{}},"f:strategy":{"f:sourceStrategy":{".":{},"f:from":{}},"f:type":{}},"f:triggers":{}}},"manager":"Mozilla","operation":"Update","time":"2023-07-30T06:04:23Z"}],"name":"httpd-sample","namespace":"netbox","resourceVersion":"407438707","uid":"01769790-9482-46e8-b86c-731166944419"},"spec":{"failedBuildsHistoryLimit":5,"nodeSelector":null,"output":{"to":{"kind":"ImageStreamTag","name":"httpd-sample:latest"}},"postCommit":{},"resources":{},"runPolicy":"Serial","source":{"git":{"uri":"https://github.com/sclorg/httpd-ex.git"},"type":"Git"},"strategy":{"sourceStrategy":{"env":[{"name":"GIT_PROXY_COMMAND","value":"nc -x proxy.gtm.lilly.com:9000 %h %p"}],"from":{"kind":"ImageStreamTag","name":"httpd:2.4-ubi9","namespace":"openshift"}},"type":"Source"},"successfulBuildsHistoryLimit":5,"triggers":[{"generic":{"secretReference":{"name":"httpd-sample-generic-webhook-secret"}},"type":"Generic"},{"github":{"secretReference":{"name":"httpd-sample-github-webhook-secret"}},"type":"GitHub"},{"imageChange":{},"type":"ImageChange"},{"type":"ConfigChange"}]},"status":{"imageChangeTriggers":[{"from":{"name":"httpd:2.4-ubi9","namespace":"openshift"},"lastTriggerTime":null,"lastTriggeredImageID":"image-registry.openshift-image-registry.svc:5000/openshift/httpd@sha256:1abe18c21ee86d7d24ddfc5874f89e56f653bc0f1a03acc54505cc501b3c948e"}],"lastVersion":1}}
+    openshift.io/generated-by: OpenShiftWebConsole
+  creationTimestamp: "2023-07-30T06:04:23Z"
+  generation: 3
+  labels:
+    app: httpd-sample
+    app.kubernetes.io/component: httpd-sample
+    app.kubernetes.io/instance: httpd-sample
+    app.kubernetes.io/name: httpd-sample
+    app.kubernetes.io/part-of: sample-app
+    app.openshift.io/runtime: httpd
+    app.openshift.io/runtime-version: 2.4-ubi9
+  name: httpd-sample
+  namespace: netbox
+  resourceVersion: "407465791"
+  uid: 01769790-9482-46e8-b86c-731166944419
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: httpd-sample:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      uri: git@github.com:sclorg/httpd-ex.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: httpd:2.4-ubi9
+        namespace: openshift
+    type: Source
+    env:
+    - name: GIT_SSH_COMMAND
+      value: ssh -o ProxyCommand='nc -x proxy.gtm.lilly.com:9000 %h %p'  # 使用代理服务器进行SSH连接  
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - generic:
+      secretReference:
+        name: httpd-sample-generic-webhook-secret
+    type: Generic
+  - github:
+      secretReference:
+        name: httpd-sample-github-webhook-secret
+    type: GitHub
+  - imageChange: {}
+    type: ImageChange
+  - type: ConfigChange
+status:
+  imageChangeTriggers:
+  - from:
+      name: httpd:2.4-ubi9
+      namespace: openshift
+    lastTriggerTime: null
+    lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/httpd@sha256:1abe18c21ee86d7d24ddfc5874f89e56f653bc0f1a03acc54505cc501b3c948e
+  lastVersion: 1

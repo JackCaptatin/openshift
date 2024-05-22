@@ -1,0 +1,50 @@
+﻿model,front_image,rear_image
+2901,devicetype-images/2901_front.png,devicetype-images/2901_rear.png
+3945,devicetype-images/3945_front.png,devicetype-images/3945_rear.png
+ASA5515X,devicetype-images/ASA5515X_front.png,devicetype-images/ASA5515X_rear.png
+ASR1001,devicetype-images/device_2_ASR_1001.png,devicetype-images/ASR_1001_rear.png
+ASR1001-X,devicetype-images/ASR_1001-X_front.png,devicetype-images/ASR_1001-X_rear.png
+BIG-LTM-2000-8G-R,devicetype-images/F5_BIG-IP_2000.png,devicetype-images/
+C9300-48UXM-A,devicetype-images/9300-48S_front.png,devicetype-images/9300-48S_rear.png
+C9500-24Y4C-A,devicetype-images/9500-24Y4C.png,devicetype-images/9500-24Y4C_REAR.png
+Catalyst 2960+24PC-S,devicetype-images/296024PC-S_front.png,devicetype-images/296024PC-S_rear.png
+Catalyst 2960X-24PS-L,devicetype-images/2960X-PS-L_front.png,devicetype-images/2960X_rear.png
+Catalyst 4500X,devicetype-images/4500X_front.png,devicetype-images/4500X_rear.png
+Catalyst 4507R+E,devicetype-images/4507RE.png,devicetype-images/
+CP3,devicetype-images/crestron_cp3_front.png,devicetype-images/crestron_cp3_rear.png
+CT2504,devicetype-images/CT_2504_front.png,devicetype-images/CT_2504_rear.png
+CX108V,devicetype-images/QSC_Cx108v_front.png,devicetype-images/
+D328,devicetype-images/Depusheng_d328_front.png,devicetype-images/Depusheng_d328_rear.png
+DL360 G10,devicetype-images/HP_DL360_G10_8SFF_front.png,devicetype-images/HP_DL360_G10_8SFF_rear.png
+DL360 G8,devicetype-images/HP_DL360_G8_8SFF_front.png,devicetype-images/HP_DL360_G8_8SFF_rear.png
+DL380 G10,devicetype-images/HP_DL380G10_front.png,devicetype-images/HP_DL380G10_rear.png
+DL380 G8,devicetype-images/HP_DL380G8_8SFF_front.png,devicetype-images/HP_DL380G8_8SFF_rear.png
+DL380 G9,devicetype-images/HP_DL380G9_8SFF_front.png,devicetype-images/HP_DL380G9_8SFF_rear.png
+DM-MD 16x16,devicetype-images/Crestron_16x16_rear.png,devicetype-images/Crestron_16x16_rear.png
+DM-MD 8x8,devicetype-images/,devicetype-images/Crestron_8x8_rear.png
+DM-PSU-8,devicetype-images/crestron_dm-psu-8.png,devicetype-images/crestron_dm-psu-8_rear.png
+F5-BIG-IP i4600,devicetype-images/F5_i4000.png,devicetype-images/
+GigaVUE-HB1,devicetype-images/,devicetype-images/Gigamon_GigaVUE-HB_rear.png
+HD-MD8x1-4K,devicetype-images/Crestron_hd-md8x1-4k_front.png,devicetype-images/Crestron_hd-md8x1-4k_rear.png
+ISR 4331,devicetype-images/ISR_4331_front.png,devicetype-images/ISR_4331_rear.png
+ISR 4351,devicetype-images/ISR_4351_front.png,devicetype-images/ISR_4351_rear.png
+ISR 4451,devicetype-images/ISR_4451_front.png,devicetype-images/ISR_4451_rear.png
+IZA 190-HZ,devicetype-images/Bose_iza_190-hz_front.png,devicetype-images/Bose_iza_190-hz_rear.png
+N9K-C93108TC-EX,devicetype-images/93108TC_front.png,devicetype-images/93108TC_rear.png
+N9K-C93128TX,devicetype-images/93128TX_front.png,devicetype-images/93128TX_rear.png
+N9K-C93180YC-EX,devicetype-images/93180YC_front.png,devicetype-images/93180YC_rear.png
+N9K-C93216TX-FX2,devicetype-images/93216_Front.png,devicetype-images/93216_rear.png
+Paloalto 3250,devicetype-images/Palo_Alto_3250_front.png,devicetype-images/Palo_Alto_3250_rear.png
+PM 4250,devicetype-images/Bose_PM4250_front.png,devicetype-images/Bose_PM4250_rear.png
+QIP 1210,devicetype-images/QIP_1210_front.png,devicetype-images/QIP_1210_rear.png
+QIP AMM700,devicetype-images/QIP_AMM700_front.png,devicetype-images/'QIP_AMM700_rear .png'
+SP-6108,devicetype-images/Thinuna_sp6108_front.png,devicetype-images/Thinuna_sp6108_rear.png
+ThinkCentre M920 Tiny,devicetype-images/M920_front.png,devicetype-images/M920_rear.png
+Trinzic 1405,devicetype-images/infoblox_front.png,devicetype-images/infoblox_rear.png
+WLC5508,devicetype-images/WLC5508_front.png,devicetype-images/WLC5508_rear.png
+WLC5520,devicetype-images/WLC5520_front.png,devicetype-images/WLC5520_rear.png
+WS-C3650-24PS,devicetype-images/3650-24P_front.png,devicetype-images/3650-24P_rear.png
+WS-C3650-48PS,devicetype-images/3650-48P_front.png,devicetype-images/3650-48P_rear.png
+WS-C3750X-12S,devicetype-images/3750X-12S_front.png,devicetype-images/3750X-12S_rear.png
+WS-C3750X-48P,devicetype-images/3750X-48P_front.png,devicetype-images/3750X-48P_rear.png
+WS-C3850-48PS,devicetype-images/3850-48_front.png,devicetype-images/3850-48_back.png

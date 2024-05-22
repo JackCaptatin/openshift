@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-ubuntu-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-ubuntu
+  template:
+    metadata:
+      labels:
+        app: my-ubuntu
+    spec:
+      containers:
+        - name: my-ubuntu
+          image: docker.io/shenjuna/my-ubuntu:latest
+          command: ["/bin/bash", "-c"]
+          args: ["while true; do echo 'I am alive'; sleep 10; done"]
+          env:
+            - name: HTTP_PROXY
+              value: http://proxy.gtm.lilly.com:9000
+            - name: HTTPS_PROXY
+              value: http://proxy.gtm.lilly.com:9000
+            - name: NO_PROXY
+              value: .svc,.cluster.local,127.0.0.1,.lilly.com
+          resources:
+            limits:
+              memory: 2Gi
+              cpu: 1
+            requests:
+              memory: 2Gi
+              cpu: 0.5
+      restartPolicy: Always
+

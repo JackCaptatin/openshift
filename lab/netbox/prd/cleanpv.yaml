@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cleanup-pod
+spec:
+  containers:
+  - name: cleanup-container
+    image: busybox  # 使用一个轻量级的 BusyBox 镜像
+    env:
+    - name: HTTP_PROXY
+      value: "http://jp-proxy.xh3.lilly.com:9000"
+    - name: HTTPS_PROXY
+      value: "http://jp-proxy.xh3.lilly.com:9000"
+    - name: NO_PROXY
+      value: ".lilly.com,.svc.cluster.local,localhost,127.0.0.1"  # Adjust this based on your needs
+    command: ["sh", "-c", "rm -r /mnt/data/data"]
+    volumeMounts:
+    - name: pv-storage  # 替换成您的 PV 的名称
+      mountPath: /mnt/data  # 替换成您需要清理的 PV 的挂载点
+  volumes:
+  - name: pv-storage  # 替换成您的 PV 的名称
+    persistentVolumeClaim:
+      claimName: postgresql  # 替换成您的 PVC 的名称

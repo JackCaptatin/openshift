@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: netbox
+  template:
+    metadata:
+      labels:
+        app: netbox
+    spec:
+      containers:
+      - name: netbox
+        image: netboxcommunity/netbox:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: netbox-secret
+              key: SECRET_KEY
+        - name: REDIS_HOST
+          value: "redis.netbox-dev.svc.cluster.local"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_CACHE_HOST
+          value: "redis-cache-service.netbox-dev.svc.cluster.local"
+        - name: REDIS_CACHE_PORT
+          value: "6379"
+        - name: DB_WAIT_DEBUG
+          value: "1"
+        - name: DB_HOST
+          value: "postgres-service.netbox-dev.svc.cluster.local"
+        - name: DB_NAME
+          value: "netbox"
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: DB_USER
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: DB_PASSWORD       
+        - name: DB_PORT
+          value: "5432"
+        - name: HTTP_PROXY
+          value: "http://jp-proxy.xh3.lilly.com:9000"
+        - name: HTTPS_PROXY
+          value: "http://jp-proxy.xh3.lilly.com:9000"
+        - name: NO_PROXY
+          value: ".lilly.com,.svc.cluster.local,localhost,127.0.0.1"  # Adjust this based on your needs
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: netbox-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+
+  selector:
+    app: netbox

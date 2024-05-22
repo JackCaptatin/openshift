@@ -1,0 +1,91 @@
+在OpenShift平台上运行的NetBox，如果是容器化部署，密码重置过程稍有不同，但原理相同。我们将使用OpenShift的CLI工具oc来执行密码重置。下面是具体的步骤：
+
+1. 确定Pod的名称
+首先，您需要找出运行NetBox的Pod的名称。可以使用oc命令列出当前项目中的所有Pods：
+
+bash
+Copy code
+oc get pods
+从列出的Pods中找到NetBox的Pod。假设Pod的名称类似于netbox-865d5bb8f9-7mk9h。
+
+2. 进入Pod
+使用oc exec命令进入Pod，并启动一个交互式shell：
+
+bash
+Copy code
+oc rsh netbox-865d5bb8f9-7mk9h
+3. 运行Django的管理命令
+在Pod内部，您需要使用Django的manage.py来重置密码。首先，确保您在包含manage.py的目录中。这通常在NetBox的根目录。
+
+然后，运行以下命令来重置指定用户的密码：
+
+bash
+Copy code
+python manage.py changepassword <username>
+将<username>替换为需要重置密码的用户名，通常是admin。
+
+4. 退出Pod
+完成密码重置后，您可以退出Pod：
+
+bash
+Copy code
+exit
+
+在Linux环境中，如果您希望列出某个目录下的文件，每行显示一个文件名，但又不希望显示ls -l命令的详细输出，您可以使用ls -1（这里的-1是数字1，不是字母l）命令来达到这个效果。ls -1命令将每个文件名单独列在一行，不包含其他额外的信息。
+
+使用 ls -1
+打开您的终端，并输入以下命令：
+
+bash
+Copy code
+ls -1 /path/to/directory
+这里的/path/to/directory需要替换成您想查看的目录的实际路径。这个命令将列出该目录下的所有文件和文件夹，每个文件或文件夹名称占一行。
+
+
+a. 连接到数据库
+使用psql或其他工具连接到NetBox的PostgreSQL数据库：
+
+bash
+Copy code
+psql -U [DB_USER] -h [DB_HOST] -d [DB_NAME]
+既然您的凭据存储在OpenShift平台上，并且您具有管理权限，您可以使用OpenShift CLI工具（oc命令）来检索您的数据库凭据。在OpenShift中，数据库用户名和密码通常存储在一个名为Secrets的资源中。
+
+步骤来检索Secrets
+定位Secret：
+首先，确定存储数据库凭据的Secret的名称。您可以列出当前项目下所有的Secrets来找到它：
+
+bash
+Copy code
+oc get secrets
+查看Secret的内容：
+一旦知道了Secret的名称（假设是db-credentials），您可以使用下面的命令查看它的内容：
+
+bash
+Copy code
+oc describe secret db-credentials
+这个命令将显示Secret的详细信息，但不会直接显示密码。密码和其他敏感数据通常以base64编码的形式存储。
+
+解码Secret的数据：
+要获取实际的凭据，您需要解码base64编码的数据。首先使用以下命令获取编码的数据：
+
+bash
+Copy code
+oc get secret db-credentials -o jsonpath="{.data.DB_USER}" | base64 --decode; echo
+oc get secret db-credentials -o jsonpath="{.data.DB_PASSWORD}" | base64 --decode; echo
+这些命令将分别解码和打印出数据库用户名和密码。jsonpath用于提取具体的数据字段，而base64 --decode用于解码数据。
+
+netbox 数据库名称
+netbox 数据库用户名
+Lilly2023 数据库密码
+
+SELECT table_name
+FROM information_schema.tables
+WHERE table_schema = 'public'  -- 确保只查看用户定义的表
+  AND table_name ILIKE '%image%';  -- 搜索包含'image'的表名，不区分大小写
+
+默认管理员账户
+admin
+Wdsrs!979
+
+
+

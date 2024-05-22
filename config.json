@@ -1,0 +1,12 @@
+{
+ "proxies":
+ {
+   "default":
+   {
+     "httpProxy": "http://proxy.gtm.lilly.com:9000",
+     "httpsProxy": "http://proxy.gtm.lilly.com:9000",
+     "noProxy": ".yourdomain.com"
+   }
+ }
+}
+
